@@ -21,7 +21,8 @@ audioptions_music = [
     "música aleatória",
     "música",
     "música para ouvir",
-    "música para escutar"
+    "música para escutar",
+    "ouvir música",
 ]
 
 audioptionsquit = [
@@ -50,42 +51,70 @@ audioptionstraining = [
     "que músculo eu treino"
     "que músculo eu treino hoje",
     "treino",
-    "treinar"
+    "treinar",
+    "renato cariani",
+    "renato carir"   
+    "renato car",
+    "renato cariri" 
 ]
 
-musics = [
+linkinpark = [
     "from+the+inside",
     "numb",
     "keys+to+the+kingdom",
     "faint+linkin+park",
     "let+down+dead+by+sunrise",
-    "sai+solidao",
-    "a+thousand+miles",
-    "prophets+ac+newman",
-    "paparazzi+lady+gaga",
-    "out+of+the+ashes+shymphony+x",
-    "carry+on+angra",
-    "ela+so+pensa+em+beijar+mc+leozinho",
     "leave+out+all+the+rest",
-    "heroes+of+the+sand+angra",
-    "sweet+caroline+neil+diamond",
-    "never+too+late+three+days+grace",
-    "sometimes+britney+spears",
-    "please+please+please+let+me+get+what+i+want",
-    "waitint+for+an+invitation+benji+hughes",
-    "rocket+man+elton+john",
-    "quero+sentir+de+novo+baroes+da+pisadinha",
-    "i+hate+everything+about+you+three+days+grace",
-    "você+não+me+ensinou+a+te+esquecer",
-    "you+give+love+a+bad+name",
-    "i+want+it+that+way",
-    "toxicity",
-    "last+resort+papa+roach",
     "a+place+for+my+head",
-    "broken+home+papa+roach",
-    "blood+brothers+papa+roach",
-    "how+you+remind+me+nickelback",
-    "mega+sena+pablo"
+    "figure09"
+]
+
+oldmusics = [
+    "cant+take+my+eyes+off+you",
+    "this+night+has+opened+my+eyes",
+    "linger+the+cranberries",
+    "somethin'+stupid",
+    "back+to+the+old+house",
+    "sweet+caroline+neil+diamond"
+]
+
+himymmusics = [
+    "hey+beautiful+the+solids",
+    "voices+cheap+trick",
+    "you+give+love+a+bad+name",
+    "dont+go+break+my+heart",
+    "im+gonna+be+500+miles",
+    "nice+dream+radiohead",
+    "waiting+for+a+invitation+benji+hughes",
+    "prophets+ac+newman",
+    "two+weeks+grizzly+bear",
+    "our+house+crosby",
+    "the+funeral+the+bands+of+horses",
+    "the+wind+yusuf",
+    "let+your+heart+hold+fast+fort+atlantic",
+    "eternal+flame+the+bangles",
+    "downtown+train+everything+but+the+girl",
+    "heaven+the+walkmen"
+
+]
+
+progmetal = [
+    "heroes+of+sand+angra",
+    "sea+of+lies+symphony+x",
+    "fury+of+the+storm+dragonforce",
+    "carry+on+angra",
+    "out+of+the+ashes+symphony+x",
+    "masquerade+symphony+x",
+    "the+divine+wings+of+tragedy"
+]
+
+baroesdapisadinha = [
+    "cabeca+voando++baroes+da+pisadinha",
+    "bebe+vem+me+procurar+baroes+da+pisadinha",
+    "ja+que+me+ensinou+a+beber+baroes+da+pisadinha",
+    "sexta+feira+rotineira+baroes+da+pisadinha",
+    "quero+sentir+de+novo+baroes+da+pisadinha",
+    "eu+acho+que+nao+baroes+da+pisadinha",
 ]
 
 movies = [
@@ -94,7 +123,8 @@ movies = [
     "spider+man+no+way+home+movie",
     "how+i+met+your+mother+series",
     "the+big+bang+theory+series",
-    "dexter+series"
+    "dexter+series",
+    "the+notebook+movie"
 ]
 
 muscular_groups = [
@@ -746,6 +776,14 @@ def main():
                     if text.lower() in audioptions_music:
                         os.system('cls' if os.name == 'nt' else 'clear')
 
+                        musics = [
+                            random.choice(linkinpark),
+                            random.choice(oldmusics),
+                            random.choice(himymmusics),
+                            random.choice(progmetal),
+                            random.choice(baroesdapisadinha)
+                        ]
+
                         music = random.choice(musics)
 
                         print(f"The music chosen is: {music.replace('+',' ')}")
@@ -759,6 +797,32 @@ def main():
                         engine.say("Good bye" + nameuser)
                         engine.runAndWait()
                         break
+                    elif text.lower() == "linkin par":
+                        linkinparkrandom = random.choice(linkinpark)
+
+                        os.system('cls' if os.name == 'nt' else 'clear')
+                        webbrowser.open(f"https://www.youtube.com/results?search_query={linkinparkrandom}")
+                        print(f"The linkin park music chosen is: {linkinparkrandom.replace('+',' ')}")
+                        engine.say("the linkin park music chosen is" + linkinparkrandom.replace('+',' '))
+                        engine.runAndWait()
+                    elif text.lower() == "música antiga":
+                        oldmusicsrandom = random.choice(oldmusics)
+
+                        os.system('cls' if os.name == 'nt' else 'clear')
+                        webbrowser.open(f"https://www.youtube.com/results?search_query={oldmusicsrandom}")
+                        print(f"The old music chosen is: {oldmusicsrandom.replace('+',' ')}")
+                        engine.say("the old music chosen is" + oldmusicsrandom.replace('+',' '))
+                        engine.runAndWait()
+
+                    elif text.lower() == "músicas de como conheci sua mãe":
+                        himymmusicsrandom = random.choice(himymmusics)
+
+                        os.system('cls' if os.name == 'nt' else 'clear')
+                        webbrowser.open(f"https://www.youtube.com/results?search_query={himymmusicsrandom}")
+                        print(f"The himym music chosen is: {himymmusicsrandom.replace('+',' ')}")
+                        engine.say("the himym music chosen is" + himymmusicsrandom.replace('+',' '))
+                        engine.runAndWait()
+
                     elif text.lower() in audioptionstime:
                         os.system('cls' if os.name == 'nt' else 'clear')
                         print(f"right now the time is {time.strftime('%H:%M:%S')}, day is {time.strftime('%d/%m/%Y')} and week day is {time.strftime('%A')}")
