@@ -13,11 +13,44 @@ import pyttsx3
 engine = pyttsx3.init()
 engine.setProperty('rate', 100)
 
-audioptions = [
+audioptions_music = [
     "escolher uma música aleatória",
+    "escolher música aleatória",
+    "escolha uma música aleatória",
+    "escolha música aleatória",
+    "música aleatória",
+    "música",
+    "música para ouvir",
+    "música para escutar"
+]
+
+audioptionsquit = [
     "sair",
+    "tchau",
+    "desligar",
+    "tchau roger",
+    "silvio santos"
+]
+
+audioptionstime =[
     "que horas são",
-    "o que eu treino hoje"
+    "horas",
+    "saber as horas",
+    "qual a hora"
+]
+
+audioptionstraining = [
+    "o que eu treino hoje",
+    "músculo para treinar",
+    "o que treinar",
+    "academia",
+    "o que treinar hoje",
+    "o que treinar",
+    "o que eu posso treinar hoje",
+    "que músculo eu treino"
+    "que músculo eu treino hoje",
+    "treino",
+    "treinar"
 ]
 
 musics = [
@@ -41,7 +74,18 @@ musics = [
     "please+please+please+let+me+get+what+i+want",
     "waitint+for+an+invitation+benji+hughes",
     "rocket+man+elton+john",
-    "quero+sentir+de+novo+baroes+da+pisadinha"
+    "quero+sentir+de+novo+baroes+da+pisadinha",
+    "i+hate+everything+about+you+three+days+grace",
+    "você+não+me+ensinou+a+te+esquecer",
+    "you+give+love+a+bad+name",
+    "i+want+it+that+way",
+    "toxicity",
+    "last+resort+papa+roach",
+    "a+place+for+my+head",
+    "broken+home+papa+roach",
+    "blood+brothers+papa+roach",
+    "how+you+remind+me+nickelback",
+    "mega+sena+pablo"
 ]
 
 movies = [
@@ -676,8 +720,12 @@ def main():
                     match headortail:
                         case 1:
                             print("The coin landed on heads")
+                            engine.say("the coin landed on heads")
+                            engine.runAndWait()
                         case 2:
                             print("The coin landed on tails")
+                            engine.say("the coin landed on tails")
+                            engine.runAndWait()
                 case 11:
                     os.system('cls' if os.name == 'nt' else 'clear')
                     
@@ -695,7 +743,7 @@ def main():
                     except sr.RequestError as e:
                         print(f"could not request results; {e}")
 
-                    if text.lower() == audioptions[0]:
+                    if text.lower() in audioptions_music:
                         os.system('cls' if os.name == 'nt' else 'clear')
 
                         music = random.choice(musics)
@@ -705,18 +753,18 @@ def main():
                         engine.runAndWait()
                         webbrowser.open(f"https://www.youtube.com/results?search_query={music}")
 
-                    elif text.lower() == audioptions[1]:
+                    elif text.lower() in audioptionsquit:
                         os.system('cls' if os.name == 'nt' else 'clear')
                         print(f"Good bye {nameuser}!")
                         engine.say("Good bye" + nameuser)
                         engine.runAndWait()
                         break
-                    elif text.lower() == audioptions[2]:
+                    elif text.lower() in audioptionstime:
                         os.system('cls' if os.name == 'nt' else 'clear')
                         print(f"right now the time is {time.strftime('%H:%M:%S')}, day is {time.strftime('%d/%m/%Y')} and week day is {time.strftime('%A')}")
                         engine.say("right now the time is" + time.strftime('%H:%M:%S') + "day is" + time.strftime('%d/%m/%Y') + "and week day is" + time.strftime('%A'))
                         engine.runAndWait()
-                    elif text.lower() == audioptions[3]:
+                    elif text.lower() in audioptionstraining:
                         os.system('cls' if os.name == 'nt' else 'clear')
 
                         muscular_group = random.choice(muscular_groups)
@@ -724,6 +772,11 @@ def main():
                         engine.say("the muscular group chosen is" + muscular_group)
                         engine.runAndWait()
                         webbrowser.open(f"https://duckduckgo.com/?origin=funnel_home_google&t=h_&q=exercises+for+{muscular_group}+workout&ia=web")
+                    elif text.lower() == "o que sobra para o beta":
+                        os.system('cls' if os.name == 'nt' else 'clear')
+                        print("Nothing (brutal)")
+                        engine.say("nothing")
+                        engine.runAndWait()
                     else:
                         os.system('cls' if os.name == 'nt' else 'clear')
                         print(f"we do not have the option '{text}' in our voice commands")   
