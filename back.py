@@ -23,6 +23,17 @@ audioptions_music = [
     "música para ouvir",
     "música para escutar",
     "ouvir música",
+    "quero ouvir uma música",
+    "quero ouvir música"    
+]
+
+audioptions_musics_special = [
+    "linkin park",
+    "linkin par",
+    "música antiga",
+    "músicas de como conheci sua mãe",
+    "metal progressivo",
+    "pisadinha"
 ]
 
 audioptionsquit = [
@@ -30,14 +41,18 @@ audioptionsquit = [
     "tchau",
     "desligar",
     "tchau roger",
-    "silvio santos"
+    "silvio santos",
+    "adeus"
 ]
 
 audioptionstime =[
     "que horas são",
     "horas",
+    "horas",
     "saber as horas",
-    "qual a hora"
+    "qual a hora",
+    "hora agora",
+    "que horas são agora"
 ]
 
 audioptionstraining = [
@@ -66,7 +81,18 @@ linkinpark = [
     "let+down+dead+by+sunrise",
     "leave+out+all+the+rest",
     "a+place+for+my+head",
-    "figure09"
+    "figure09",
+    "in+pieces+linkin+park",
+    "easier+to+run+linkin+park",
+    "somewhere+i+belong",
+    "bleed+it+out+linkin+park",
+    "two+faced+linkin+park",
+    "no+more+sorrow+linkin+park",
+    "in+my+place+linkin+park",
+    "by+myself+linkin+park",
+    "war+linkin+park"
+    "mark+the+graves+linkin+park",
+    "runaway+linkin+park"
 ]
 
 oldmusics = [
@@ -75,7 +101,10 @@ oldmusics = [
     "linger+the+cranberries",
     "somethin'+stupid",
     "back+to+the+old+house",
-    "sweet+caroline+neil+diamond"
+    "sweet+caroline+neil+diamond",
+    "please+please+please+let+me+get+what+i+want",
+    "rocket+man+elton+john",
+    "and+i+love+her"
 ]
 
 himymmusics = [
@@ -715,6 +744,14 @@ def main():
 
                     match random_option:
                         case 1:
+                            musics = [                             
+                                random.choice(linkinpark),
+                                random.choice(oldmusics),
+                                random.choice(himymmusics),
+                                random.choice(progmetal),
+                                random.choice(baroesdapisadinha)
+                            ]
+                            
                             music = random.choice(musics)
                             print(f"The music chosen is: {music.replace('+',' ')}")
                             webbrowser.open(f"https://www.youtube.com/results?search_query={music}")
@@ -797,7 +834,7 @@ def main():
                         engine.say("Good bye" + nameuser)
                         engine.runAndWait()
                         break
-                    elif text.lower() == "linkin par":
+                    elif text.lower() == audioptions_musics_special[0] or text.lower() == audioptions_musics_special[1]:
                         linkinparkrandom = random.choice(linkinpark)
 
                         os.system('cls' if os.name == 'nt' else 'clear')
@@ -805,7 +842,7 @@ def main():
                         print(f"The linkin park music chosen is: {linkinparkrandom.replace('+',' ')}")
                         engine.say("the linkin park music chosen is" + linkinparkrandom.replace('+',' '))
                         engine.runAndWait()
-                    elif text.lower() == "música antiga":
+                    elif text.lower() == audioptions_musics_special[2]:
                         oldmusicsrandom = random.choice(oldmusics)
 
                         os.system('cls' if os.name == 'nt' else 'clear')
@@ -814,20 +851,36 @@ def main():
                         engine.say("the old music chosen is" + oldmusicsrandom.replace('+',' '))
                         engine.runAndWait()
 
-                    elif text.lower() == "músicas de como conheci sua mãe":
+                    elif text.lower() == audioptions_musics_special[3]:
                         himymmusicsrandom = random.choice(himymmusics)
 
                         os.system('cls' if os.name == 'nt' else 'clear')
                         webbrowser.open(f"https://www.youtube.com/results?search_query={himymmusicsrandom}")
-                        print(f"The himym music chosen is: {himymmusicsrandom.replace('+',' ')}")
-                        engine.say("the himym music chosen is" + himymmusicsrandom.replace('+',' '))
+                        print(f"The how i met your mother music chosen is: {himymmusicsrandom.replace('+',' ')}")
+                        engine.say("the how i met your mother music chosen is" + himymmusicsrandom.replace('+',' '))
                         engine.runAndWait()
+                    elif text.lower() == audioptions_musics_special[4]:
+                        progmetalrandom = random.choice(progmetal)
 
+                        os.system("cls" if os.name == "nt" else "clear")
+                        webbrowser.open(f"https://www.youtube.com/results?search_query={progmetalrandom}")
+                        print(f"the prog metal music chosen is: {progmetalrandom.replace('+',' ')}")
+                        engine.say("the prog metal music chosen is" + progmetalrandom.replace('+',' '))
+                        engine.runAndWait()
+                    elif text.lower() == audioptions_musics_special[5]:
+                        baroesdapisadinharandom = random.choice(baroesdapisadinha)
+
+                        os.system("cls" if os.name == 'nt' else 'clear')
+                        webbrowser.open(f"https://www.youtube.com/results?search_query={baroesdapisadinharandom}")
+                        print(f"The baroes da pisadinha music chosen is: {baroesdapisadinharandom.replace('+',' ')}")
+                        engine.say("the baroes da pisadinha music chosen is" + baroesdapisadinharandom.replace('+',' '))
+                        engine.runAndWait()
                     elif text.lower() in audioptionstime:
                         os.system('cls' if os.name == 'nt' else 'clear')
                         print(f"right now the time is {time.strftime('%H:%M:%S')}, day is {time.strftime('%d/%m/%Y')} and week day is {time.strftime('%A')}")
                         engine.say("right now the time is" + time.strftime('%H:%M:%S') + "day is" + time.strftime('%d/%m/%Y') + "and week day is" + time.strftime('%A'))
                         engine.runAndWait()
+                    
                     elif text.lower() in audioptionstraining:
                         os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -836,11 +889,33 @@ def main():
                         engine.say("the muscular group chosen is" + muscular_group)
                         engine.runAndWait()
                         webbrowser.open(f"https://duckduckgo.com/?origin=funnel_home_google&t=h_&q=exercises+for+{muscular_group}+workout&ia=web")
+                    
                     elif text.lower() == "o que sobra para o beta":
                         os.system('cls' if os.name == 'nt' else 'clear')
                         print("Nothing (brutal)")
                         engine.say("nothing")
                         engine.runAndWait()
+                    elif text.lower() == "comando":
+                        os.system('cls' if os.name == 'nt' else 'clear')
+                        print("comandos de música:")
+                        for i, n in enumerate(audioptions_music, start=1):
+                            print(f"{i}. {n}")
+                        
+                        print("comandos de saída:")
+                        for i, n in enumerate(audioptionsquit, start=1):
+                            print(f"{i}. {n}")
+
+                        print("comandos de data e hora:")
+                        for i, n in enumerate(audioptionstime, start=1):
+                            print(f"{i}. {n}")
+
+                        print("comandos de treino:")
+                        for i, n in enumerate(audioptionstraining, start=1):
+                            print(f"{i}. {n}")
+                        
+                        print("comandos de música especial:")
+                        for i, n in enumerate(audioptions_musics_special, start=1):
+                            print(f"{i}. {n}")
                     else:
                         os.system('cls' if os.name == 'nt' else 'clear')
                         print(f"we do not have the option '{text}' in our voice commands")   
