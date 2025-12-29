@@ -13,175 +13,6 @@ import pyttsx3
 engine = pyttsx3.init()
 engine.setProperty('rate', 100)
 
-audioptions_music = [
-    "escolher uma música aleatória",
-    "escolher música aleatória",
-    "escolha uma música aleatória",
-    "escolha música aleatória",
-    "música aleatória",
-    "música",
-    "música para ouvir",
-    "música para escutar",
-    "ouvir música",
-    "quero ouvir uma música",
-    "quero ouvir música"    
-]
-
-audioptions_musics_special = [
-    "linkin park",
-    "linkin par",
-    "música antiga",
-    "músicas de como conheci sua mãe",
-    "metal progressivo",
-    "pisadinha"
-]
-
-audioptionsquit = [
-    "sair",
-    "tchau",
-    "desligar",
-    "tchau roger",
-    "silvio santos",
-    "adeus"
-]
-
-audioptionstime =[
-    "que horas são",
-    "horas",
-    "horas",
-    "saber as horas",
-    "qual a hora",
-    "hora agora",
-    "que horas são agora"
-]
-
-audioptionstraining = [
-    "o que eu treino hoje",
-    "músculo para treinar",
-    "o que treinar",
-    "academia",
-    "o que treinar hoje",
-    "o que treinar",
-    "o que eu posso treinar hoje",
-    "que músculo eu treino"
-    "que músculo eu treino hoje",
-    "treino",
-    "treinar",
-    "renato cariani",
-    "renato carir"   
-    "renato car",
-    "renato cariri" 
-]
-
-linkinpark = [
-    "from+the+inside",
-    "numb",
-    "keys+to+the+kingdom",
-    "faint+linkin+park",
-    "let+down+dead+by+sunrise",
-    "leave+out+all+the+rest",
-    "a+place+for+my+head",
-    "figure09",
-    "in+pieces+linkin+park",
-    "easier+to+run+linkin+park",
-    "somewhere+i+belong",
-    "bleed+it+out+linkin+park",
-    "two+faced+linkin+park",
-    "no+more+sorrow+linkin+park",
-    "in+my+place+linkin+park",
-    "by+myself+linkin+park",
-    "war+linkin+park"
-    "mark+the+graves+linkin+park",
-    "runaway+linkin+park"
-]
-
-oldmusics = [
-    "cant+take+my+eyes+off+you",
-    "this+night+has+opened+my+eyes",
-    "linger+the+cranberries",
-    "somethin'+stupid",
-    "back+to+the+old+house",
-    "sweet+caroline+neil+diamond",
-    "please+please+please+let+me+get+what+i+want",
-    "rocket+man+elton+john",
-    "and+i+love+her"
-]
-
-himymmusics = [
-    "hey+beautiful+the+solids",
-    "voices+cheap+trick",
-    "you+give+love+a+bad+name",
-    "dont+go+break+my+heart",
-    "im+gonna+be+500+miles",
-    "nice+dream+radiohead",
-    "waiting+for+a+invitation+benji+hughes",
-    "prophets+ac+newman",
-    "two+weeks+grizzly+bear",
-    "our+house+crosby",
-    "the+funeral+the+bands+of+horses",
-    "the+wind+yusuf",
-    "let+your+heart+hold+fast+fort+atlantic",
-    "eternal+flame+the+bangles",
-    "downtown+train+everything+but+the+girl",
-    "heaven+the+walkmen"
-
-]
-
-progmetal = [
-    "heroes+of+sand+angra",
-    "sea+of+lies+symphony+x",
-    "fury+of+the+storm+dragonforce",
-    "carry+on+angra",
-    "out+of+the+ashes+symphony+x",
-    "masquerade+symphony+x",
-    "the+divine+wings+of+tragedy"
-]
-
-baroesdapisadinha = [
-    "cabeca+voando++baroes+da+pisadinha",
-    "bebe+vem+me+procurar+baroes+da+pisadinha",
-    "ja+que+me+ensinou+a+beber+baroes+da+pisadinha",
-    "sexta+feira+rotineira+baroes+da+pisadinha",
-    "quero+sentir+de+novo+baroes+da+pisadinha",
-    "eu+acho+que+nao+baroes+da+pisadinha",
-]
-
-movies = [
-    "fractured+movie",
-    "fight+club+movie",
-    "spider+man+no+way+home+movie",
-    "how+i+met+your+mother+series",
-    "the+big+bang+theory+series",
-    "dexter+series",
-    "the+notebook+movie"
-]
-
-muscular_groups = [
-    "Chest",
-    "Back",
-    "Quads",
-    "Calf",
-    "Hamstrings",
-    "Biceps",
-    "Triceps",
-    "Shoulders",
-    "trapezius",
-    "abs",
-    "glutes"
-]
-
-youtube_channels = [
-    "@Jazzghost",
-    "EuHipe",
-    "@seijinho",
-    "@manualdomundo",
-    "@cursoemvideo",
-    "@ColoniaContraAtaca",
-    "@urbanspook",
-    "@doctornowhere",
-    "@theyaresomebody"
-]
-
 urls = [
     #index = 0 api to get cotation real coins
     "https://api.frankfurter.app/latest",
@@ -202,6 +33,39 @@ def load_options():
  
         nameuser = options[0]["name"]
         rounder = options[1]["round"]
+
+def datajson():
+    global audioptions_music
+    global audioptions_musics_special
+    global audioptionsquit
+    global audioptionstime
+    global audioptionstraining
+    global linkinpark
+    global oldmusics
+    global himymmusics
+    global progmetal
+    global baroesdapisadinha
+    global movies
+    global muscular_groups
+    global youtube_channels
+
+
+    with open("data.json","r") as f:
+        data = json.load(f)
+
+    audioptions_music = data["options"]["audioptions_music"]
+    audioptions_musics_special = data["options"]["audioptions_musics_special"]
+    audioptionsquit = data["options"]["audioptionsquit"]
+    audioptionstime = data["options"]["audioptionstime"]
+    audioptionstraining = data["options"]["audioptionstraining"]
+    linkinpark = data["options"]["linkinpark"]
+    oldmusics = data["options"]["oldmusics"]
+    himymmusics = data["options"]["himymmusics"]
+    progmetal = data["options"]["progmetal"]
+    baroesdapisadinha = data["options"]["baroesdapisadinha"]
+    movies = data["options"]["movies"]
+    muscular_groups = data["options"]["muscular_groups"]
+    youtube_channels = data["options"]["youtube_channels"]
 
 
 def menu():
@@ -408,6 +272,7 @@ def falling_blocks_game():
 
 def main():
         while True:
+            datajson()
             load_options()
             option = menu()
 
