@@ -13,17 +13,6 @@ import pyttsx3
 engine = pyttsx3.init()
 engine.setProperty('rate', 100)
 
-urls = [
-    #index = 0 api to get cotation real coins
-    "https://api.frankfurter.app/latest",
-    #index = 1 api to get cotatin bitcoin
-    "https://api.coingecko.com/api/v3/simple/price",
-    #index = 2 api to get weather
-    "https://api.open-meteo.com/v1/forecast",
-    #index = 3 api to get ip (lat e long)
-    "http://ip-api.com/json/"
-]
-
 def load_options():
     global nameuser
     global rounder
@@ -48,7 +37,7 @@ def datajson():
     global movies
     global muscular_groups
     global youtube_channels
-
+    global urls
 
     with open("data.json","r") as f:
         data = json.load(f)
@@ -58,19 +47,19 @@ def datajson():
     audioptionsquit = data["options"]["audioptionsquit"]
     audioptionstime = data["options"]["audioptionstime"]
     audioptionstraining = data["options"]["audioptionstraining"]
-    linkinpark = data["options"]["linkinpark"]
-    oldmusics = data["options"]["oldmusics"]
-    himymmusics = data["options"]["himymmusics"]
-    progmetal = data["options"]["progmetal"]
-    baroesdapisadinha = data["options"]["baroesdapisadinha"]
-    movies = data["options"]["movies"]
-    muscular_groups = data["options"]["muscular_groups"]
-    youtube_channels = data["options"]["youtube_channels"]
-
+    linkinpark = data["data"]["linkinpark"]
+    oldmusics = data["data"]["oldmusics"]
+    himymmusics = data["data"]["himymmusics"]
+    progmetal = data["data"]["progmetal"]
+    baroesdapisadinha = data["data"]["baroesdapisadinha"]
+    movies = data["data"]["movies"]
+    muscular_groups = data["data"]["muscular_groups"]
+    youtube_channels = data["data"]["youtube_channels"]
+    urls = data["urls"]["url"]
 
 def menu():
     choices = inquirer.select(
-        message = f"Hello {nameuser}, what do you want that Rogério Tomate do?",
+        message = f"Hello {nameuser}, what do you want that Alex do?",
         choices = [
             {"name":"1 - Open Navegator", "value":1},
             {"name":"2 - Get Cotation", "value":2},
@@ -781,6 +770,12 @@ def main():
                         print("comandos de música especial:")
                         for i, n in enumerate(audioptions_musics_special, start=1):
                             print(f"{i}. {n}")
+                    elif text.lower() == "teste":
+                        with open("english.json","r") as f:
+                            data = json.load(f)
+                        print(data[0])
+                    elif text.lower() == "teste":
+                        print("test")
                     else:
                         os.system('cls' if os.name == 'nt' else 'clear')
                         print(f"we do not have the option '{text}' in our voice commands")   
