@@ -518,11 +518,11 @@ def main():
                                         pounds = pounds
                                     print(kg_to_pounds,text_language[106], pounds, text_language[107])
                                 case 2:
-                                    pounds_to_kg = float(input("Enter the weight in Pounds: "))
+                                    pounds_to_kg = float(input(text_language[108]))
                                     kilograms = pounds_to_kg / 2.20462
-                                    
+
                                     os.system("cls" if os.name == "nt" else "clear")
-                                    print(f"{pounds_to_kg} Pounds is equal to {kilograms:.2f} Kilograms")
+                                    print(pounds_to_kg,text_language[109], kilograms,text_language[110])
                                 case 3:
                                     continue
                 #Options                        
@@ -534,7 +534,7 @@ def main():
 
                     match options:
                         case 1:
-                            new_name = input("Enter your user name: ") 
+                            new_name = input(text_language[111]) 
                             with open("options.json","w") as f:
                                 json.dump([
                                     {
@@ -607,10 +607,10 @@ def main():
                                 data_weather = response__weather.json()
 
                                 os.system("cls" if os.name == 'nt' else "clear")
-                                print(f'The current temperature in {city} - {region}  is {data_weather["current_weather"]["temperature"]}°C')                   
+                                print(text_language[112], f"{city} - {region}",  text_language[113], data_weather["current_weather"]["temperature"],"°C")                   
                             else:
                                 os.system("cls" if os.name == 'nt' else "clear")
-                                print("Program was not able to get your location")
+                                print(text_language[114])
                         case 2:
                             geo_response = requests.get(url_geo)
                             data_geo = geo_response.json()
@@ -632,10 +632,10 @@ def main():
                                 data_weather = response__weather.json()
                                 
                                 os.system('cls' if os.name == 'nt' else 'clear')
-                                print(f"The current wind speed in {city} - {region} is {data_weather['current_weather']['windspeed']}km/h")
+                                print(text_language[115], f"{city} - {region}", text_language[116], data_weather['current_weather']['windspeed'],"km/h")
                             else:
                                 os.system("cls" if os.name == 'nt' else "clear")
-                                print("Program was not able to get your location")
+                                print(text_language[117])
                         case 3:
                             geo_response = requests.get(url_geo)
                             data_geo = geo_response.json()
@@ -657,13 +657,13 @@ def main():
 
                                 current_data_rain = data_weather["current"]
                                 os.system('cls' if os.name == 'nt' else 'clear')
-                                print(f"The current rain in {city} - {region} is {current_data_rain['rain']}mm and precipitation is {current_data_rain['precipitation']}")
+                                print(text_language[118], f"{city} - {region}",text_language[119], f"{current_data_rain['rain']}mm ", text_language[120], current_data_rain['precipitation'])
             elif option == 6:
                     language()
                     text_language = language()
                     
                     os.system('cls' if os.name == 'nt' else 'clear')
-                    print(f"right now the time is {time.strftime('%H:%M:%S')}, day is {time.strftime('%d/%m/%Y')} and week day is {time.strftime('%A')}")
+                    print(text_language[121], time.strftime('%H:%M:%S'), text_language[122] ,time.strftime('%d/%m/%Y'), text_language[123], time.strftime('%A'))
             elif option == 7:
                     language()
                     text_language = language()
@@ -694,20 +694,20 @@ def main():
                             ]
                             
                             music = random.choice(musics)
-                            print(f"The music chosen is: {music.replace('+',' ')}")
+                            print(text_language[124],music.replace('+',' '))
                             webbrowser.open(f"https://www.youtube.com/results?search_query={music}")
                         case 2:
                             movie = random.choice(movies)
 
-                            print(f"The movie chosen is : {movie.replace('+',' ')}")
+                            print(text_language[125], movie.replace('+',' '))
                             webbrowser.open(f"https://duckduckgo.com/?origin=funnel_home_google&t=h_&q={movie}&ia=web")
                         case 3:
                             muscular_group = random.choice(muscular_groups)
-                            print(f"The muscular group chosen is: {muscular_group}")
+                            print(text_language[126],muscular_group)
                             webbrowser.open(f"https://duckduckgo.com/?origin=funnel_home_google&t=h_&q=exercises+for+{muscular_group}+workout&ia=web")
                         case 4:
                             youtube_channel = random.choice(youtube_channels)
-                            print(f"The youtube channel chosen is : {youtube_channel}")
+                            print(text_language[127],youtube_channel)
                             webbrowser.open(f"https://www.youtube.com/{youtube_channel}")
                         case 5:
                             continue
@@ -733,11 +733,11 @@ def main():
 
                     match headortail:
                         case 1:
-                            print("The coin landed on heads")
+                            print(text_language[128])
                             engine.say("the coin landed on heads")
                             engine.runAndWait()
                         case 2:
-                            print("The coin landed on tails")
+                            print(text_language[129])
                             engine.say("the coin landed on tails")
                             engine.runAndWait()
             elif option == 11:
@@ -749,12 +749,12 @@ def main():
                     r = sr.Recognizer()
 
                     with sr.Microphone() as source:
-                        print("say something")
+                        print(text_language[130])
                         audio = r.listen(source)
 
                     try:
                         text = r.recognize_google(audio, language="pt-BR")
-                        print(f"You said: {text}")
+                        print(text_language[131],text)
                     except sr.UnknownValueError:
                         print("could not understand audio")
                     except sr.RequestError as e:
@@ -773,14 +773,14 @@ def main():
 
                         music = random.choice(musics)
 
-                        print(f"The music chosen is: {music.replace('+',' ')}")
+                        print(text_language[132], music.replace('+',' '))
                         engine.say("the music chosen is" + music.replace('+',' '))
                         engine.runAndWait()
                         webbrowser.open(f"https://www.youtube.com/results?search_query={music}")
 
                     elif text.lower() in audioptionsquit:
                         os.system('cls' if os.name == 'nt' else 'clear')
-                        print(f"Good bye {nameuser}!")
+                        print(text_language[133], f"{nameuser}!")
                         engine.say("Good bye" + nameuser)
                         engine.runAndWait()
                         break
@@ -789,7 +789,7 @@ def main():
 
                         os.system('cls' if os.name == 'nt' else 'clear')
                         webbrowser.open(f"https://www.youtube.com/results?search_query={linkinparkrandom}")
-                        print(f"The linkin park music chosen is: {linkinparkrandom.replace('+',' ')}")
+                        print(text_language[134], linkinparkrandom.replace('+',' '))
                         engine.say("the linkin park music chosen is" + linkinparkrandom.replace('+',' '))
                         engine.runAndWait()
                     elif text.lower() == audioptions_musics_special[2]:
@@ -797,7 +797,7 @@ def main():
 
                         os.system('cls' if os.name == 'nt' else 'clear')
                         webbrowser.open(f"https://www.youtube.com/results?search_query={oldmusicsrandom}")
-                        print(f"The old music chosen is: {oldmusicsrandom.replace('+',' ')}")
+                        print(text_language[135], oldmusicsrandom.replace('+',' '))
                         engine.say("the old music chosen is" + oldmusicsrandom.replace('+',' '))
                         engine.runAndWait()
 
@@ -806,7 +806,7 @@ def main():
 
                         os.system('cls' if os.name == 'nt' else 'clear')
                         webbrowser.open(f"https://www.youtube.com/results?search_query={himymmusicsrandom}")
-                        print(f"The how i met your mother music chosen is: {himymmusicsrandom.replace('+',' ')}")
+                        print(text_language[136],himymmusicsrandom.replace('+',' '))
                         engine.say("the how i met your mother music chosen is" + himymmusicsrandom.replace('+',' '))
                         engine.runAndWait()
                     elif text.lower() == audioptions_musics_special[4]:
@@ -814,7 +814,7 @@ def main():
 
                         os.system("cls" if os.name == "nt" else "clear")
                         webbrowser.open(f"https://www.youtube.com/results?search_query={progmetalrandom}")
-                        print(f"the prog metal music chosen is: {progmetalrandom.replace('+',' ')}")
+                        print("the prog metal music chosen is:" ,progmetalrandom.replace('+',' '))
                         engine.say("the prog metal music chosen is" + progmetalrandom.replace('+',' '))
                         engine.runAndWait()
                     elif text.lower() == audioptions_musics_special[5]:
@@ -822,12 +822,12 @@ def main():
 
                         os.system("cls" if os.name == 'nt' else 'clear')
                         webbrowser.open(f"https://www.youtube.com/results?search_query={baroesdapisadinharandom}")
-                        print(f"The baroes da pisadinha music chosen is: {baroesdapisadinharandom.replace('+',' ')}")
+                        print(text_language[137] ,baroesdapisadinharandom.replace('+',' '))
                         engine.say("the baroes da pisadinha music chosen is" + baroesdapisadinharandom.replace('+',' '))
                         engine.runAndWait()
                     elif text.lower() in audioptionstime:
                         os.system('cls' if os.name == 'nt' else 'clear')
-                        print(f"right now the time is {time.strftime('%H:%M:%S')}, day is {time.strftime('%d/%m/%Y')} and week day is {time.strftime('%A')}")
+                        print(text_language[138], f"{time.strftime('%H:%M:%S')},", text_language[139], time.strftime('%d/%m/%Y'), text_language[140],time.strftime('%A'))
                         engine.say("right now the time is" + time.strftime('%H:%M:%S') + "day is" + time.strftime('%d/%m/%Y') + "and week day is" + time.strftime('%A'))
                         engine.runAndWait()
                     
@@ -835,46 +835,46 @@ def main():
                         os.system('cls' if os.name == 'nt' else 'clear')
 
                         muscular_group = random.choice(muscular_groups)
-                        print(f"The muscular group chosen is: {muscular_group}")
+                        print(text_language[141],muscular_group)
                         engine.say("the muscular group chosen is" + muscular_group)
                         engine.runAndWait()
                         webbrowser.open(f"https://duckduckgo.com/?origin=funnel_home_google&t=h_&q=exercises+for+{muscular_group}+workout&ia=web")
                     
                     elif text.lower() == "o que sobra para o beta":
                         os.system('cls' if os.name == 'nt' else 'clear')
-                        print("Nothing (brutal)")
+                        print(text_language[142])
                         engine.say("nothing")
                         engine.runAndWait()
                     elif text.lower() == "comando":
                         os.system('cls' if os.name == 'nt' else 'clear')
-                        print("comandos de música:")
+                        print(text_language[143])
                         for i, n in enumerate(audioptions_music, start=1):
                             print(f"{i}. {n}")
                         
-                        print("comandos de saída:")
+                        print(text_language[144])
                         for i, n in enumerate(audioptionsquit, start=1):
                             print(f"{i}. {n}")
 
-                        print("comandos de data e hora:")
+                        print(text_language[145])
                         for i, n in enumerate(audioptionstime, start=1):
                             print(f"{i}. {n}")
 
-                        print("comandos de treino:")
+                        print(text_language[146])
                         for i, n in enumerate(audioptionstraining, start=1):
                             print(f"{i}. {n}")
                         
-                        print("comandos de música especial:")
+                        print(text_language[147])
                         for i, n in enumerate(audioptions_musics_special, start=1):
                             print(f"{i}. {n}")
                     elif text.lower() == "teste":
                         print(text_language[0])
                     else:
                         os.system('cls' if os.name == 'nt' else 'clear')
-                        print(f"we do not have the option '{text}' in our voice commands")   
+                        print(text_language[148], f"({text})")   
             elif option == 12:
                     language()
                     text_language = language()
                     
                     os.system('cls' if os.name == 'nt' else 'clear')
-                    print(f"Good bye {nameuser}!")
+                    print(text_language[149], f"{nameuser}!")
                     break
