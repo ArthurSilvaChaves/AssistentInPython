@@ -16,12 +16,16 @@ engine.setProperty('rate', 100)
 def load_options():
     global nameuser
     global rounder
+    global choicelanguage
 
     with open("options.json","r") as f:
         options = json.load(f)
  
         nameuser = options[0]["name"]
         rounder = options[1]["round"]
+        choicelanguage = options[2]["language"]
+        
+load_options()
 
 def datajson():
     global audioptions_music
@@ -57,56 +61,95 @@ def datajson():
     youtube_channels = data["data"]["youtube_channels"]
     urls = data["urls"]["url"]
 
+def language_enus():
+    global text_enus
+
+    with open("language.json","r") as f:
+
+        language = json.load(f)
+
+        text_enus = language["enus"]
+
+    return text_enus
+
+def language_ptbr():
+    global text_ptbr
+
+    with open("language.json","r") as f:
+         
+         language = json.load(f)
+
+         text_ptbr = language["ptbr"]
+
+         
+    return text_enus
+
+
+
+def language(choice=choicelanguage):
+    if choice == 1:
+        language = language_enus()
+        return language
+    elif choice == 2:
+        language  = language_ptbr()
+        return language 
+
+text_language = language()
+
+
+#menu principal
 def menu():
     choices = inquirer.select(
-        message = f"Hello {nameuser}, what do you want that Alex do?",
+        message = text_language[0] + nameuser + text_language[1],
         choices = [
-            {"name":"1 - Open Navegator", "value":1},
-            {"name":"2 - Get Cotation", "value":2},
-            {"name":"3 - Convertion Tool", "value":3},
-            {"name":"4 - Options", "value":4},
-            {"name":"5 - Get Weather", "value":5},
-            {"name":"6 - Hour in Real Time","value":6},
-            {"name":"7 - See notices about technology","value":7},
-            {"name":"8 - choose something random","value":8},
-            {"name":"9 - Play a little game (Falling Blocks)","value":9},
-            {"name":"10 - Heads or Tails","value":10},
-            {"name":"11 - Use the audio recongizer(beta use)","value":11},
-            {"name":"Close","value":12}
+            {"name":text_language[2], "value":1},
+            {"name":text_language[3], "value":2},
+            {"name":text_language[4], "value":3},
+            {"name":text_language[5], "value":4},
+            {"name":text_language[6], "value":5},
+            {"name":text_language[7],"value":6},
+            {"name":text_language[8],"value":7},
+            {"name":text_language[9],"value":8},
+            {"name":text_language[10],"value":9},
+            {"name":text_language[11],"value":10},
+            {"name":text_language[12],"value":11},
+            {"name":text_language[13],"value":12}
         ]
     ).execute()
 
     return choices
 
-def hour_real_time():
-    current_time = inquirer.select(
-        message="Do you want to see the current time",
-        choices=[
-            {"name":"Yes","value":1},
-            {"name":"No","value":2}
-        ]
-    ).execute()
-
-    return current_time
-
 def options_menu():
     options = inquirer.select(
-        message= "Which option do you wannna change?",
+        message= text_language[14],
         choices = [
-            {"name":"Change my user name","value":1},
-            {"name":"Enable/Disable rouding numbers", "value":2},
-            {"name":"Back to main menu","value":3}
+            {"name":text_language[15],"value":1},
+            {"name":text_language[16], "value":2},
+            {"name":text_language[17],"value":3},
+            {"name":text_language[18],"value":4},
         ]
     ).execute()
 
     return options
 
+def language_menu():
+    language = inquirer.select(
+        message=text_language[19],
+        choices = [
+            {"name":text_language[20],"value":1},
+            {"name":text_language[21],"value":2},
+            {"name":text_language[22],"value":3}
+        ]
+    ).execute()
+
+    return language
+
 def rounder_option():
     round_choice = inquirer.select(
-        message="Do you want to enable rounding numbers?",
+        message=text_language[23],
         choices=[
-            {"name":"Yes","value":True},
-            {"name":"No","value":False}
+            {"name":text_language[24],"value":True},
+            {"name":text_language[25],"value":False}
         ]
     ).execute()
 
@@ -114,12 +157,12 @@ def rounder_option():
 
 def open_navegator():
     navegator = inquirer.select(
-        message="Which navegador do you want to open?",
+        message=text_language[26],
         choices = [
-             {"name":"Firefox","value":1},
-             {"name":"Chrome","value":2},
-             {"name":"Edge","value":3},
-             {"name":"Back to main menu","value":4}
+             {"name":text_language[27],"value":1},
+             {"name":text_language[28],"value":2},
+             {"name":text_language[29],"value":3},
+             {"name":text_language[30],"value":4}
         ]
     ).execute()
 
@@ -127,16 +170,16 @@ def open_navegator():
 
 def get_cotation():
     cotation = inquirer.select(
-        message="Which cotation do you want to know?",
+        message=text_language[31],
         choices = [
-            {"name":"Dollar - (USD) to Brazilian Real - (BRL)","value":1},
-            {"name":"Euro - (EUR) to Brazilian Real - (BRL)","value":2},
-            {"name":"Japonese Yen - (JPY) to Brazilian Real (BRL)","value":3},
-            {"name":"Brazilian Real - (BRL) to Dollar - (USD)","value":4},
-            {"name":"Brazilian Real - (BRL) to Euro - (EUR)","value":5},
-            {"name":"Brazilian Real - (BRL) to Japonese Yen - (JPY)","value":6},
-            {"name":"Bitcoin - (BTC) to Brazilian Real - (BRL)","value":7},
-            {"name":"Back to main menu","value":8}
+            {"name":text_language[32],"value":1},
+            {"name":text_language[33],"value":2},
+            {"name":text_language[34],"value":3},
+            {"name":text_language[35],"value":4},
+            {"name":text_language[36],"value":5},
+            {"name":text_language[37],"value":6},
+            {"name":text_language[38],"value":7},
+            {"name":text_language[39],"value":8}
         ]
     ).execute()
 
@@ -144,11 +187,11 @@ def get_cotation():
 
 def temperature_converter():
     temperature_option = inquirer.select(
-        message="Which temperature conversion do you want to do?",
+        message=text_language[40],
         choices = [
-            {"name":"Celsius to Fahrenheit","value":1},
-            {"name":"Fahrenheit to Celsius","value":2},
-            {"name":"Back to main menu","value":3}
+            {"name":text_language[41],"value":1},
+            {"name":text_language[42],"value":2},
+            {"name":text_language[43],"value":3}
         ]
     ).execute()
 
@@ -156,11 +199,11 @@ def temperature_converter():
 
 def distance_converter():
     distance_option = inquirer.select(
-        message="Which distance conversion do you want to do?",
+        message=text_language[44],
         choices = [
-            {"name":"Kilometers to Miles","value":1},
-            {"name":"Miles to Kilometers","value":2},
-            {"name":"Back to main menu","value":3}
+            {"name":text_language[45],"value":1},
+            {"name":text_language[46],"value":2},
+            {"name":text_language[47],"value":3}
         ]
     ).execute()
 
@@ -168,11 +211,11 @@ def distance_converter():
 
 def weight_converter():
     weight_option = inquirer.select(
-        message="Which weight conversion do you want to do?",
+        message=text_language[48],
         choices = [
-            {"name":"Kilograms to Pounds","value":1},
-            {"name":"Pounds to Kilograms","value":2},
-            {"name":"Back to main menu","value":3}
+            {"name":text_language[49],"value":1},
+            {"name":text_language[50],"value":2},
+            {"name":text_language[51],"value":3}
         ]
     ).execute()
 
@@ -180,12 +223,12 @@ def weight_converter():
 
 def convertion_tool():
     convertion = inquirer.select(
-        message="Which convertion tool do you want to use?",
+        message=text_language[52],
         choices = [
-            {"name":"Temperature Converter Tool","value":1},
-            {"name":"Distance Converter Tool","value":2},
-            {"name":"Weight Converter Tool","value":3},
-            {"name":"Back to main menu","value":4}
+            {"name":text_language[53],"value":1},
+            {"name":text_language[54],"value":2},
+            {"name":text_language[55],"value":3},
+            {"name":text_language[56],"value":4}
         ]
     ).execute()
 
@@ -193,10 +236,10 @@ def convertion_tool():
 
 def get_notices():
     notices = inquirer.select(
-        message="Do you want to see the latest technology notices?",
+        message=text_language[57],
         choices = [
-            {"name":"Yes","value":1},
-            {"name":"No","value":2}
+            {"name":text_language[58],"value":1},
+            {"name":text_language[59],"value":2}
         ]
     ).execute()
 
@@ -212,7 +255,7 @@ def notices_shows(query=None):
     res = requests.get(url)
     data = res.json()
 
-    print("Notices about Technology of the Hacker News\n")
+    print(text_language[60])
 
     for i,n in enumerate(data['hits'][:5],start=1):
         title = n['title'] or "No title"
@@ -223,12 +266,12 @@ def notices_shows(query=None):
     
 def weather_tool():
     weather = inquirer.select(
-        message="Which weather tool do you want to use?",
+        message=text_language[61],
         choices = [
-            {"name":"Get temperature","value":1},
-            {"name":"Get Wind Speed","value":2},
-            {"name":"Get Rain and Precipitation","value":3},
-            {"name":"Back to main menu","value":4}
+            {"name":text_language[62],"value":1},
+            {"name":text_language[63],"value":2},
+            {"name":text_language[64],"value":3},
+            {"name":text_language[65],"value":4}
         ]
     ).execute()
 
@@ -236,13 +279,13 @@ def weather_tool():
 
 def random_choice():
     rand_choice = inquirer.select(
-        message="Want do you choose randomly?",
+        message=text_language[66],
         choices = [
-            {"name":"Choose a music to listen","value":1},
-            {"name":"Choose a movie or series to watch","value":2},
-            {"name":"Choose a muscular group to train","value":3},
-            {"name":"Choose a random youtube channel","value":4},
-            {"name":"Back to main menu","value":5}
+            {"name":text_language[67],"value":1},
+            {"name":text_language[68],"value":2},
+            {"name":text_language[69],"value":3},
+            {"name":text_language[70],"value":4},
+            {"name":text_language[71],"value":5}
         ]
     ).execute()
 
@@ -250,10 +293,10 @@ def random_choice():
 
 def falling_blocks_game():
     game = inquirer.select(
-        message="Do you want to play falling blocks?",
+        message=text_language[72],
         choices = [
-            {"name":"Yes","value":1},
-            {"name":"No","value":2}
+            {"name":text_language[73],"value":1},
+            {"name":text_language[74],"value":2}
         ]
     ).execute()
 
@@ -264,143 +307,146 @@ def main():
             datajson()
             load_options()
             option = menu()
+            text_language = language()
 
-            match option:
-                #Open Navegator
-                case 1:
+            if option == 1:
+                    #Open Navegator
                     os.system('cls' if os.name == 'nt' else 'clear')
                     
                     nav = open_navegator()
 
-                    match nav:
-                        case 1:
+                    if nav == 1:
                             pyautogui.press("win")
                             pyautogui.PAUSE = 0.7
                             pyautogui.write("firefox")
                             pyautogui.PAUSE = 0.7
                             pyautogui.press("enter")
-                        case 2:
+                    elif nav == 2:
                             pyautogui.press("win")
                             pyautogui.PAUSE = 0.7
                             pyautogui.write("chrome")
                             pyautogui.PAUSE = 0.7
                             pyautogui.press("enter")    
-                        case 3:
+                    elif nav ==  3:
                             pyautogui.press("win")
                             pyautogui.PAUSE = 0.7
                             pyautogui.write("edge")
                             pyautogui.PAUSE = 0.7
                             pyautogui.press("enter")
-                        case 4:
+                    else :
                             continue
-                #Get Cotation
-                case 2:
+                    #Get Cotation
+            elif option == 2:
                     url = urls[0]
                     
                     cot = get_cotation()
 
-                    match cot:
-                        case 1:
-                            amountdollar = input("How many Dollars do you want to convert to BRL?: ")
+                    language()
+                    
+                    text_language = language()
+                    if cot == 1:
+                        amountdollar = input(text_language[75])
                             
-                            paramsdollar = {
-                                "from":"USD",
-                                "to":"BRL",
-                                "amount":amountdollar
-                            }
+                        paramsdollar = {
+                            "from":"USD",
+                            "to":"BRL",
+                            "amount":amountdollar
+                        }
 
-                            response = requests.get(url,params=paramsdollar)
-                            data = response.json()
+                        response = requests.get(url,params=paramsdollar)
+                        data = response.json()
 
-                            os.system("cls" if os.name == "nt" else "clear")
+                        os.system("cls" if os.name == "nt" else "clear")
                             
-                            print(f"{amountdollar} Dollars is equal to {data['rates']['BRL']:.2f} BRL (Brazilian Real)")
-                        case 2:
-                            amounteuro = input("How many Euros do you want to convert to BRL?: ")
+                        print(amountdollar + text_language[76],data['rates']['BRL'],text_language[77])
+                    elif cot == 2:
+                        amounteuro = input(text_language[78])
                             
-                            paramseuro = {
-                                "from":"EUR",
-                                "to":"BRL",
-                                "amount":amounteuro
-                            }
+                        paramseuro = {
+                            "from":"EUR",
+                            "to":"BRL",
+                            "amount":amounteuro
+                        }
 
-                            response = requests.get(url,params=paramseuro)
-                            data = response.json()
+                        response = requests.get(url,params=paramseuro)
+                        data = response.json()
 
-                            os.system("cls" if os.name == "nt" else "clear")
+                        os.system("cls" if os.name == "nt" else "clear")
                             
-                            print(f"{amounteuro} euro is equal to {data['rates']['BRL']:.2f} BRL (Brazilian Real)")
+                        print(amounteuro, " euro is equal to ",data['rates']['BRL']," BRL (Brazilian Real)")
 
-                        case 3:
-                            amountyen = input("How many Japonese Yen do you want to convert to BRL?: ")
+                    elif cot == 3:
+                        amountyen = input("How many Japonese Yen do you want to convert to BRL?: ")
                             
-                            paramsyen = {
-                                "from":"JPY",
-                                "to":"BRL",
-                                "amount":amountyen
-                            }
+                        paramsyen = {
+                            "from":"JPY",
+                            "to":"BRL",
+                            "amount":amountyen
+                        }
 
-                            response = requests.get(url,params=paramsyen)
-                            data = response.json()
+                        response = requests.get(url,params=paramsyen)
+                        data = response.json()
 
-                            os.system("cls" if os.name == "nt" else "clear")
-                            print(f"{amountyen} Japonese Yen in equal to {data['rates']['BRL']:.2f} BRL (Brazilian Real)")
-                        case 4:
-                            amount_BRL_to_USD = input("How many Brazilian Real do you want to convert to Dollar?: ")
+                        os.system("cls" if os.name == "nt" else "clear")
+                        print(f"{amountyen} Japonese Yen in equal to {data['rates']['BRL']:.2f} BRL (Brazilian Real)")
+                    elif cot ==  4:
+                        amount_BRL_to_USD = input("How many Brazilian Real do you want to convert to Dollar?: ")
 
-                            params_BRL_to_USD = {
-                                "from":"BRL",
-                                "to":"USD",
-                                "amount":amount_BRL_to_USD
-                            }
+                        params_BRL_to_USD = {
+                            "from":"BRL",
+                            "to":"USD",
+                            "amount":amount_BRL_to_USD
+                        }
 
-                            response = requests.get(url,params=params_BRL_to_USD)
-                            data = response.json()
+                        response = requests.get(url,params=params_BRL_to_USD)
+                        data = response.json()
 
-                            os.system("cls" if os.name == "nt" else "clear")
-                            print(f"{amount_BRL_to_USD} BRL (Brazilian Real) is equal to {data['rates']['USD']:.2f} Dollars")
-                        case 5:
-                            amount_BRL_to_EUR = input("How many Brazilian Real do you want to convert to Euro?: ")
+                        os.system("cls" if os.name == "nt" else "clear")
+                        print(f"{amount_BRL_to_USD} BRL (Brazilian Real) is equal to {data['rates']['USD']:.2f} Dollars")
+                    elif cot == 5:
+                        amount_BRL_to_EUR = input("How many Brazilian Real do you want to convert to Euro?: ")
 
-                            params_BRL_to_EUR = {
-                                "from":"BRL",
-                                "to":"EUR",
-                                "amount":amount_BRL_to_EUR
-                            }
+                        params_BRL_to_EUR = {
+                            "from":"BRL",
+                            "to":"EUR",
+                            "amount":amount_BRL_to_EUR
+                        }
 
-                            response = requests.get(url,params=params_BRL_to_EUR)
-                            data = response.json()
+                        response = requests.get(url,params=params_BRL_to_EUR)
+                        data = response.json()
 
-                            os.system("cls" if os.name == "nt" else "clear")
-                            print(f"{amount_BRL_to_EUR} BRL (Brazilian Real) is equal to {data['rates']['EUR']:.2f} Euros")
-                        case 6:
-                            amount_BRL_to_JPY = input("How many Brazilian Real do you want to convert to Japonese Yen?: ")
+                        os.system("cls" if os.name == "nt" else "clear")
+                        print(f"{amount_BRL_to_EUR} BRL (Brazilian Real) is equal to {data['rates']['EUR']:.2f} Euros")
+                    elif cot == 6:
+                        amount_BRL_to_JPY = input("How many Brazilian Real do you want to convert to Japonese Yen?: ")
 
-                            params_BRL_to_JPY = {
-                                "from":"BRL",
-                                "to":"JPY",
-                                "amount":amount_BRL_to_JPY
-                            }
+                        params_BRL_to_JPY = {
+                            "from":"BRL",
+                            "to":"JPY",
+                            "amount":amount_BRL_to_JPY
+                        }
 
-                            response = requests.get(url,params=params_BRL_to_JPY)
-                            data = response.json()
+                        response = requests.get(url,params=params_BRL_to_JPY)
+                        data = response.json()
 
-                            os.system("cls" if os.name == "nt" else "clear")
-                            print(f"{amount_BRL_to_JPY} BRL (Brazilian Real) is equal to {data['rates']['JPY']:.2f} Japonese Yen")
-                        case 7:
-                            url_btc = urls[1]
-                            paramsbtc = {
-                                "ids":"bitcoin",
-                                "vs_currencies":"brl"
-                            }
+                        os.system("cls" if os.name == "nt" else "clear")
+                        print(f"{amount_BRL_to_JPY} BRL (Brazilian Real) is equal to {data['rates']['JPY']:.2f} Japonese Yen")
+                    elif cot == 7:
+                        url_btc = urls[1]
+                        paramsbtc = {
+                            "ids":"bitcoin",
+                            "vs_currencies":"brl"
+                        }
 
-                            res = requests.get(url_btc,params=paramsbtc)
-                            data = res.json()
+                        res = requests.get(url_btc,params=paramsbtc)
+                        data = res.json()
 
-                            os.system("cls" if os.name == "nt" else "clear")
-                            print(f"1 Bitcoin (BTC) is equal to {data['bitcoin']['brl']} BRL (Brazilian Real)")
+                        os.system("cls" if os.name == "nt" else "clear")
+                        print(f"1 Bitcoin (BTC) is equal to {data['bitcoin']['brl']} BRL (Brazilian Real)")
+                    else:
+                        continue
                 #Convertion Tool                
-                case 3:
+            elif option == 3:
                     convertool = convertion_tool()
 
                     match convertool:
@@ -475,7 +521,7 @@ def main():
                                 case 3:
                                     continue
                 #Options                        
-                case 4:
+            elif option ==  4:
                     options = options_menu()
 
                     match options:
@@ -501,8 +547,16 @@ def main():
                                         "round":new_round
                                     }
                                 ],f,indent=4)
+                        case 3:
+                            new_language = language_menu()
+
+                            match new_language:
+                                case 1:
+                                    text_language = text_enus
+                                case 2:
+                                    text_language = text_ptbr
                 #weather tool
-                case 5:
+            elif option == 5:
                     url_weather = urls[2]
                     url_geo = urls[3]
 
@@ -580,10 +634,10 @@ def main():
                                 current_data_rain = data_weather["current"]
                                 os.system('cls' if os.name == 'nt' else 'clear')
                                 print(f"The current rain in {city} - {region} is {current_data_rain['rain']}mm and precipitation is {current_data_rain['precipitation']}")
-                case 6:
+            elif option == 6:
                     os.system('cls' if os.name == 'nt' else 'clear')
                     print(f"right now the time is {time.strftime('%H:%M:%S')}, day is {time.strftime('%d/%m/%Y')} and week day is {time.strftime('%A')}")
-                case 7:
+            elif option == 7:
                     os.system('cls' if os.name == 'nt' else 'clear')
                     notices = get_notices()
 
@@ -592,7 +646,7 @@ def main():
                             notices_shows()
                         case 2:
                             continue
-                case 8:
+            elif option ==8:
                     os.system('cls' if os.name == 'nt' else 'clear')
                     random_option = random_choice()
 
@@ -624,7 +678,7 @@ def main():
                             webbrowser.open(f"https://www.youtube.com/{youtube_channel}")
                         case 5:
                             continue
-                case 9:
+            elif option == 9:
                     os.system('cls' if os.name == 'nt' else 'clear')
                     game_choice = falling_blocks_game()
 
@@ -634,7 +688,7 @@ def main():
                             game.run()
                         case 2:
                             continue
-                case 10:
+            elif option == 10:
                     os.system('cls' if os.name == 'nt' else 'clear')
                     headortail = random.choice([1,2])
 
@@ -647,7 +701,7 @@ def main():
                             print("The coin landed on tails")
                             engine.say("the coin landed on tails")
                             engine.runAndWait()
-                case 11:
+            elif option == 11:
                     os.system('cls' if os.name == 'nt' else 'clear')
                     
                     r = sr.Recognizer()
@@ -771,15 +825,11 @@ def main():
                         for i, n in enumerate(audioptions_musics_special, start=1):
                             print(f"{i}. {n}")
                     elif text.lower() == "teste":
-                        with open("english.json","r") as f:
-                            data = json.load(f)
-                        print(data[0])
-                    elif text.lower() == "teste":
-                        print("test")
+                        print(text_language[0])
                     else:
                         os.system('cls' if os.name == 'nt' else 'clear')
                         print(f"we do not have the option '{text}' in our voice commands")   
-                case 12:
+            elif option == 12:
                     os.system('cls' if os.name == 'nt' else 'clear')
                     print(f"Good bye {nameuser}!")
                     break
