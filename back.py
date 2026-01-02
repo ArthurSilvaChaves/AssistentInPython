@@ -24,7 +24,7 @@ def load_options():
         nameuser = options[0]["name"]
         rounder = options[1]["round"]
         choicelanguage = options[2]["language"]
-        
+
 load_options()
 
 def datajson():
@@ -82,9 +82,10 @@ def language_ptbr():
          text_ptbr = language["ptbr"]
 
          
-    return text_enus
+    return text_ptbr
 
-
+language_enus()
+language_ptbr() 
 
 def language(choice=choicelanguage):
     if choice == 1:
@@ -304,6 +305,7 @@ def falling_blocks_game():
 
 def main():
         while True:
+            language()
             datajson()
             load_options()
             option = menu()
@@ -373,10 +375,10 @@ def main():
 
                         os.system("cls" if os.name == "nt" else "clear")
                             
-                        print(amounteuro, " euro is equal to ",data['rates']['BRL']," BRL (Brazilian Real)")
+                        print(amounteuro, text_language[79],data['rates']['BRL'],text_language[80])
 
                     elif cot == 3:
-                        amountyen = input("How many Japonese Yen do you want to convert to BRL?: ")
+                        amountyen = input(text_language[81])
                             
                         paramsyen = {
                             "from":"JPY",
@@ -388,9 +390,9 @@ def main():
                         data = response.json()
 
                         os.system("cls" if os.name == "nt" else "clear")
-                        print(f"{amountyen} Japonese Yen in equal to {data['rates']['BRL']:.2f} BRL (Brazilian Real)")
+                        print(amountyen, text_language[82] ,data['rates']['BRL'], text_language[83])
                     elif cot ==  4:
-                        amount_BRL_to_USD = input("How many Brazilian Real do you want to convert to Dollar?: ")
+                        amount_BRL_to_USD = input(text_language[84])
 
                         params_BRL_to_USD = {
                             "from":"BRL",
@@ -402,9 +404,9 @@ def main():
                         data = response.json()
 
                         os.system("cls" if os.name == "nt" else "clear")
-                        print(f"{amount_BRL_to_USD} BRL (Brazilian Real) is equal to {data['rates']['USD']:.2f} Dollars")
+                        print(amount_BRL_to_USD,text_language[85],data['rates']['USD'], text_language[86])
                     elif cot == 5:
-                        amount_BRL_to_EUR = input("How many Brazilian Real do you want to convert to Euro?: ")
+                        amount_BRL_to_EUR = input(text_language[87])
 
                         params_BRL_to_EUR = {
                             "from":"BRL",
@@ -416,9 +418,9 @@ def main():
                         data = response.json()
 
                         os.system("cls" if os.name == "nt" else "clear")
-                        print(f"{amount_BRL_to_EUR} BRL (Brazilian Real) is equal to {data['rates']['EUR']:.2f} Euros")
+                        print(amount_BRL_to_EUR, text_language[88], data['rates']['EUR'], text_language[89])
                     elif cot == 6:
-                        amount_BRL_to_JPY = input("How many Brazilian Real do you want to convert to Japonese Yen?: ")
+                        amount_BRL_to_JPY = input(text_language[90])
 
                         params_BRL_to_JPY = {
                             "from":"BRL",
@@ -430,7 +432,7 @@ def main():
                         data = response.json()
 
                         os.system("cls" if os.name == "nt" else "clear")
-                        print(f"{amount_BRL_to_JPY} BRL (Brazilian Real) is equal to {data['rates']['JPY']:.2f} Japonese Yen")
+                        print(amount_BRL_to_JPY, text_language[91],data['rates']['JPY'], text_language[92])
                     elif cot == 7:
                         url_btc = urls[1]
                         paramsbtc = {
@@ -442,12 +444,15 @@ def main():
                         data = res.json()
 
                         os.system("cls" if os.name == "nt" else "clear")
-                        print(f"1 Bitcoin (BTC) is equal to {data['bitcoin']['brl']} BRL (Brazilian Real)")
+                        print(text_language[93],{data['bitcoin']['brl']},text_language[94])
                     else:
                         continue
                 #Convertion Tool                
             elif option == 3:
                     convertool = convertion_tool()
+
+                    language()
+                    text_language = language()
 
                     match convertool:
                         case 1:
@@ -455,7 +460,7 @@ def main():
 
                              match temp_option:
                                 case 1:
-                                    celsius_to_fahrenheit = float(input("Enter the temperature in Celsius: "))
+                                    celsius_to_fahrenheit = float(input(text_language[95]))
                                     fahrenheit = (celsius_to_fahrenheit * (9/5)) + 32
                                     
                                     os.system("cls" if os.name == "nt" else "clear")
@@ -463,13 +468,13 @@ def main():
                                         fahrenheit = round(fahrenheit)
                                     else:
                                         fahrenheit = fahrenheit
-                                    print(f"{celsius_to_fahrenheit}°C is equal to {fahrenheit}°F")
+                                    print(celsius_to_fahrenheit, text_language[96],  fahrenheit,"°F")
                                 case 2:
-                                    fahrenheit_to_celsius = float(input("Enter the temperature in Fahrenheit: "))
+                                    fahrenheit_to_celsius = float(input(text_language[97]))
                                     celsius = (fahrenheit_to_celsius - 32) * (5/9)
                                     
                                     os.system("cls" if os.name == "nt" else "clear")
-                                    print(f"{fahrenheit_to_celsius}°F is equal to {celsius}°C")
+                                    print(fahrenheit_to_celsius,text_language[98],celsius,"°C")
                                 case 3:
                                     continue
                         case 2:
@@ -477,7 +482,7 @@ def main():
 
                             match distance_option:
                                 case 1:
-                                    km_to_miles = float(input("Enter the distance in Kilometers: "))
+                                    km_to_miles = float(input(text_language[99]))
                                     miles = km_to_miles * 0.621371
                                     
                                     if rounder == True:
@@ -486,9 +491,9 @@ def main():
                                         miles = miles
 
                                     os.system("cls" if os.name == "nt" else "clear")
-                                    print(f"{km_to_miles} Kilometers is equal to {miles} Miles")
+                                    print(km_to_miles,text_language[100],miles,text_language[101])
                                 case 2:
-                                    miles_to_km = float(input("Enter the distance in Miles: "))
+                                    miles_to_km = float(input(text_language[102]))
                                     kilometers = miles_to_km / 0.621371
                                     
                                     if rounder == True:
@@ -497,13 +502,13 @@ def main():
                                         kilometers = kilometers
 
                                     os.system("cls" if os.name == "nt" else "clear")
-                                    print(f"{miles_to_km} Miles is equal to {kilometers} Kilometers")
+                                    print(miles_to_km,text_language[103],kilometers, text_language[104])
                         case 3:
                             weight_option = weight_converter()
 
                             match weight_option:
                                 case 1:
-                                    kg_to_pounds = float(input("Enter the weight in Kilograms: "))
+                                    kg_to_pounds = float(input(text_language[105]))
                                     pounds = kg_to_pounds * 2.20462
                                     
                                     os.system("cls" if os.name == "nt" else "clear")
@@ -511,7 +516,7 @@ def main():
                                         pounds = round(pounds)
                                     else:
                                         pounds = pounds
-                                    print(f"{kg_to_pounds} Kilograms is equal to {pounds} Pounds")
+                                    print(kg_to_pounds,text_language[106], pounds, text_language[107])
                                 case 2:
                                     pounds_to_kg = float(input("Enter the weight in Pounds: "))
                                     kilograms = pounds_to_kg / 2.20462
@@ -524,6 +529,9 @@ def main():
             elif option ==  4:
                     options = options_menu()
 
+                    language()
+                    text_language = language()
+
                     match options:
                         case 1:
                             new_name = input("Enter your user name: ") 
@@ -534,6 +542,9 @@ def main():
                                     },
                                     {
                                         "round":rounder
+                                    },
+                                    {
+                                        "language":choicelanguage
                                     }
                                 ],f,indent=4)
                         case 2:
@@ -545,22 +556,35 @@ def main():
                                     },
                                     {
                                         "round":new_round
+                                    },
+                                    {
+                                        "language":choicelanguage
                                     }
                                 ],f,indent=4)
                         case 3:
                             new_language = language_menu()
-
-                            match new_language:
-                                case 1:
-                                    text_language = text_enus
-                                case 2:
-                                    text_language = text_ptbr
+                            with open("options.json","w") as f:
+                                json.dump([
+                                    {
+                                        "name":nameuser
+                                    },
+                                    {
+                                        "round":rounder
+                                    },
+                                    {
+                                        "language":new_language
+                                    }
+                                ],f,indent=4)
+                            
                 #weather tool
             elif option == 5:
                     url_weather = urls[2]
                     url_geo = urls[3]
 
                     weather = weather_tool()
+
+                    language()
+                    text_language = language()
 
                     match weather:
                         case 1:
@@ -635,9 +659,15 @@ def main():
                                 os.system('cls' if os.name == 'nt' else 'clear')
                                 print(f"The current rain in {city} - {region} is {current_data_rain['rain']}mm and precipitation is {current_data_rain['precipitation']}")
             elif option == 6:
+                    language()
+                    text_language = language()
+                    
                     os.system('cls' if os.name == 'nt' else 'clear')
                     print(f"right now the time is {time.strftime('%H:%M:%S')}, day is {time.strftime('%d/%m/%Y')} and week day is {time.strftime('%A')}")
             elif option == 7:
+                    language()
+                    text_language = language()
+                    
                     os.system('cls' if os.name == 'nt' else 'clear')
                     notices = get_notices()
 
@@ -646,7 +676,10 @@ def main():
                             notices_shows()
                         case 2:
                             continue
-            elif option ==8:
+            elif option == 8:
+                    language()
+                    text_language = language()
+                    
                     os.system('cls' if os.name == 'nt' else 'clear')
                     random_option = random_choice()
 
@@ -679,6 +712,9 @@ def main():
                         case 5:
                             continue
             elif option == 9:
+                    language()
+                    text_language = language()
+                    
                     os.system('cls' if os.name == 'nt' else 'clear')
                     game_choice = falling_blocks_game()
 
@@ -689,6 +725,9 @@ def main():
                         case 2:
                             continue
             elif option == 10:
+                    language()
+                    text_language = language()
+                    
                     os.system('cls' if os.name == 'nt' else 'clear')
                     headortail = random.choice([1,2])
 
@@ -702,6 +741,9 @@ def main():
                             engine.say("the coin landed on tails")
                             engine.runAndWait()
             elif option == 11:
+                    language()
+                    text_language = language()
+                    
                     os.system('cls' if os.name == 'nt' else 'clear')
                     
                     r = sr.Recognizer()
@@ -830,6 +872,9 @@ def main():
                         os.system('cls' if os.name == 'nt' else 'clear')
                         print(f"we do not have the option '{text}' in our voice commands")   
             elif option == 12:
+                    language()
+                    text_language = language()
+                    
                     os.system('cls' if os.name == 'nt' else 'clear')
                     print(f"Good bye {nameuser}!")
                     break
