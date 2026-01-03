@@ -444,7 +444,7 @@ def main():
                         data = res.json()
 
                         os.system("cls" if os.name == "nt" else "clear")
-                        print(text_language[93],{data['bitcoin']['brl']},text_language[94])
+                        print(text_language[93],data['bitcoin']['brl'],text_language[94])
                     else:
                         continue
                 #Convertion Tool                
