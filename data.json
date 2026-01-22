@@ -164,5 +164,17 @@
             "https://api.open-meteo.com/v1/forecast",       
             "http://ip-api.com/json/"
         ]
+    },
+    "coins":{
+        "coin":[
+            "USD",
+            "EUR",
+            "JPY",
+            "BTC",
+            "Dollars",
+            "Euros",
+            "Japonese Yen",
+            "Bitcoin"
+        ]
     }
 }

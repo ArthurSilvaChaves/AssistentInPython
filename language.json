@@ -2,7 +2,7 @@
     "enus":[
         "hello ",
         ", what do you want that Alex do?",
-        "1 - Open Navegator",
+        "1 - Open Browser",
         "2 - Get Cotation",
         "3 - Convertion Tool",
         "4 - Options",
@@ -26,7 +26,7 @@
         "Do you want to enable rounding numbers?",
         "Yes",
         "No",
-        "Which navegador do you want to open?",
+        "Which browser do you want to open?",
         "Firefox",
         "Chrome",
         "Edge",

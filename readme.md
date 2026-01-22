@@ -1,7 +1,7 @@
 # Assistent in Python 💻
 
 ## Description 📰
-assistent in python, simple in the terminal
+assistent in python, simple in the terminal, and two languages
 
 ## Features ⚙
 ### Automation for open navegator 
@@ -36,5 +36,3 @@ assistent in python, simple in the terminal
 ## Future features 📲
 ### Graphic interface
 - will be made with customtkinter
-### More idiom
-- Pt-br idiom will be add
