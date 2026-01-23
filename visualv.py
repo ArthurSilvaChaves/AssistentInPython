@@ -97,110 +97,188 @@ def get_cotation_coins():
         if coin in coins:
             url_cotation = urls[0]
             url_bitcoin = urls[1]
+            
+            #dollar to brl
             if (coin == coins[0] and coin_to == coins[8] ) or (coin == coins[4] and coin_to == coins[8]) or (coin == coins[4].lower() and coin_to == coins[8]):
                 paramsdollar = {
                     "from":"USD",
                     "to":"BRL",
                     "amount":value_coin
                 }
-
                 response = requests.get(url_cotation, params=paramsdollar)
                 data = response.json()
 
                 mainlabel1.configure(text=f"{value_coin} USD = {data['rates']['BRL']} BRL")
             
+            #brl to dollar
             elif (coin == coins[8] and coin_to == coins[0]) or (coin == coins[8] and coin_to == coins[4]) or (coin == coins[8] and coin_to == coins[4].lower()):
                 paramsreal = {
                     "from":"BRL",
                     "to":"USD",
                     "amount":value_coin
                 }
-            
                 response = requests.get(url_cotation, params=paramsreal)
                 data = response.json()
 
                 mainlabel1.configure(text=f"{value_coin} BRL = {data['rates']['USD']} USD")
-
+           
+            #euro to brl
             elif (coin == coins[1] and coin_to == coins[8]) or (coin == coins[5] and coin_to == coins[8]) or (coin == coins[5].lower() and coin_to == coins[8]):
                 paramseuro = {
                     "from":"EUR",
                     "to":"BRL",
                     "amount":value_coin
                 }
-
                 response = requests.get(url_cotation, params=paramseuro)
                 data = response.json()
 
                 mainlabel1.configure(text=f"{value_coin} EUR = {data['rates']['BRL']} BRL")
             
+            #brl to euro
             elif (coin == coins[8] and coin_to == coins[1]) or (coin == coins[8] and coin_to == coins[5]) or (coin == coins[8] and coin_to == coins[5].lower()):
                 paramsreal_to_euro = {
                     "from":"BRL",
                     "to":"EUR",
                     "amount":value_coin
                 }
-
                 response = requests.get(url_cotation, params=paramsreal_to_euro)
                 data = response.json()
 
                 mainlabel1.configure(text=f"{value_coin} BRL = {data['rates']['EUR']} EUR")
-
+            #yene to brl
             elif (coin == coins[2] and coin_to == coins[8]) or (coin == coins[6] and coin_to == coins[8]) or (coin == coins[6].lower() and coin_to == coins[8]):
                 paramsyen = {
                     "from":"JPY",
                     "to":"BRL",
                     "amount":value_coin
                 }
-
                 response = requests.get(url_cotation, params=paramsyen)
                 data = response.json()
 
                 mainlabel1.configure(text=f"{value_coin} YEN = {data['rates']['BRL']} BRL")
-            
+            #brl to yene
             elif (coin == coins[8] and coin_to == coins[2]) or (coin == coins[8] and coin_to == coins[6]) or (coin == coins[8] and coin_to == coins[6].lower()):
                 paramsreal_to_yen = {
                     "from":"BRL",
                     "to":"JPY",
                     "amount":value_coin
                 }
-
                 response = requests.get(url_cotation, params=paramsreal_to_yen)
                 data = response.json()
 
                 mainlabel1.configure(text=f"{value_coin} BRL = {data['rates']['JPY']} YEN")
-
+            #btc to brl
             elif coin == coins[3] or coin == coins[7] or coin == coins[7].lower():
                 paramsbitcoin = {
                     "ids":"bitcoin",
                     "vs_currencies":"brl"
                 }
-
                 res = requests.get(url_bitcoin, params=paramsbitcoin)
                 databitcoin = res.json()
 
                 btc_brl = databitcoin["bitcoin"]["brl"]
 
                 mainlabel1.configure(text=f"1 BTC = {btc_brl} BRL")
+            #dollar to euro
+            elif coin == coins[0].upper() and coin_to == coins[1]:
+                paramsdollar_to_euro = {
+                    "from":"USD",
+                    "to":"EUR",
+                    "amount":value_coin
+                }
+
+                response = requests.get(url_cotation,params=paramsdollar_to_euro)
+                data = response.json()
+                mainlabel1.configure(text=f"{value_coin} USD = {data['rates']['EUR']} EUR")
+            #euro to dollar
+            elif coin == coins[1].upper() and coin_to == coins[0]:
+                paramseuro_to_dollar = {
+                    "from":"EUR",
+                    "to":"USD",
+                    "amount":value_coin
+                }
+                response = requests.get(url_cotation,params=paramseuro_to_dollar)
+                data = response.json()
+            #dollar to yene
+            elif coin == coins[0].upper() and coin_to == coins[2]:
+                paramsdollar_to_yen = {
+                    "from":"USD",
+                    "to":"JPY",
+                    "amount":value_coin
+                }
+                response = requests.get(url_cotation,params=paramsdollar_to_yen)
+                data = response.json()
+                mainlabel1.configure(text=f"{value_coin} USD = {data['rates']['JPY']} YEN")
+            #yene to dollar
+            elif coin == coins[2].upper() and coin_to == coins[0]:
+                paramsyen_to_dollar = {
+                    "from":"JPY",
+                    "to":"USD",
+                    "amount":value_coin
+                }
+                response = requests.get(url_cotation,params=paramsyen_to_dollar)
+                data = response.json()
+                mainlabel1.configure(text=f"{value_coin} YEN = {data['rates']['USD']} USD")
+            #euro to yene
+            elif coin == coins[1].upper() and coin_to == coins[2]:
+                paramseuro_to_yen = {
+                    "from":"EUR",
+                    "to":"JPY",
+                    "amount":value_coin    
+            }
+                response = requests.get(url_cotation,params=paramseuro_to_yen)
+                data = response.json()
+                mainlabel1.configure(text=f"{value_coin} EUR = {data['rates']['JPY']} YEN")
+            #yene to euro
+            elif coin == coins[2].upper() and coin_to == coins[1]:
+                paramsyen_to_euro = {
+                    "from":"JPY",
+                    "to":"EUR",
+                    "amount":value_coin
+                }
+
+                response = requests.get(url_cotation,params=paramsyen_to_euro)
+                data = response.json()
+                mainlabel1.configure(text=f"{value_coin} YEN = {data['rates']['EUR']} EUR")
+        
             else:
                 mainlabel1.configure(text="Please enter a valid coin.")
+            
 
 def convertion_tool():
     amount = main_entry.get()
     value1 = second_entry.get()
     value2 = third_entry.get()
 
+    #bagunça total (arrumar dps)|(fix this later)
     if not amount or not value1 or not value2:
         mainlabel1.configure(text=" Please enter all the necessary values.")
         main_entry.configure(placeholder_text="value")
         second_entry.configure(placeholder_text="from measure")
         third_entry.configure(placeholder_text="measure")
     else:
+        #temperature conversion conditions (if & else)
         if value1.lower() == "celsius" and value2.lower() == "fahrenheit":
             fahrenheit = (float(amount) * 1.8) + 32
             mainlabel1.configure(text=f"{amount} Celsius = {fahrenheit} Fahrenheit")
         elif value1.lower() == "fahrenheit" and value2.lower() == "celsius":
             celsius = (float(amount) - 32) / 1.8
             mainlabel1.configure(text=f"{amount} Fahrenheit = {celsius:.2f} Celsius")
+        #distance conversion conditions (if & else)
+        elif value1.lower() == "km" and value2.lower() == "miles":
+            miles = float(amount) * 0.621371
+            mainlabel1.configure(text=f"{amount} Kilometers = {miles:.2f} Miles")
+        elif value1.lower() == "miles" and value2.lower() == "km":
+            kilometers = float(amount) / 0.621371
+            mainlabel1.configure(text=f"{amount} Miles = {kilometers:.2f} Kilometers")
+        #weight conversion conditions (if & else)
+        elif value1.lower() == "kg" and value2.lower() == "pounds":
+            pounds = float(amount) * 2.20462
+            mainlabel1.configure(text=f"{amount} Kilograms = {pounds:.2f} Pounds")
+        elif value1.lower() == "pounds" and value2.lower() == "kg":
+            kilograms = float(amount) / 2.20462
+            mainlabel1.configure(text=f"{amount} Pounds = {kilograms:.2f} Kilograms")
+        #if user no enter a valid value or measure
         else:
             mainlabel1.configure(text="Please enter valid measures.")
 def atualizar_relogio():
@@ -220,6 +298,9 @@ relogio.pack(pady=5)
 dia = ctk.CTkLabel(janela, text=f"{datetime.now().strftime('%d/%m/%Y')}", font=("Arial", 20))
 dia.pack(pady=5)
 
+dia_semana = ctk.CTkLabel(janela, text=f"{datetime.now().strftime('%A')}", font=("Arial", 20))
+dia_semana.pack(pady=5)
+
 mainlabel1 = ctk.CTkLabel(janela, text=f"Welcome, {nameuser}!", font=("Arial", 20))
 mainlabel1.pack(pady=5)
 
@@ -230,12 +311,12 @@ second_entry = ctk.CTkEntry(janela, placeholder_text="Second Entry",font=("Arial
 second_entry.pack(pady=10)
 
 tolabel = ctk.CTkLabel(janela, text="To", font=("Arial", 20))
-tolabel.pack(pady=10)
+tolabel.pack(pady=5)
 
 third_entry = ctk.CTkEntry(janela, placeholder_text="Third Entry",font=("Arial", 20),width=400)
 third_entry.pack(pady=10)
 
-functions = ctk.CTkScrollableFrame(janela, width=300, height=400)
+functions = ctk.CTkScrollableFrame(janela, width=300, height=200)
 functions.pack(pady=10)
 
 mainlabel2 = ctk.CTkLabel(janela, text="Functions", font=("Arial", 20))
@@ -247,7 +328,7 @@ open_app_button.pack(pady=10)
 get_cotation_coins_button = ctk.CTkButton(functions, text="Get Cotation Coins", command=get_cotation_coins,font=("Arial", 20))
 get_cotation_coins_button.pack(pady=10)
 
-manual_to_user_button = ctk.CTkButton(functions, text="User Manual (Readme)", command=lambda: webbrowser.open("https://github.com/ArthurSilvaChaves/AssistentInPython"),font=("Arial", 20))
+manual_to_user_button = ctk.CTkButton(functions, text="User Manual (Readme)", command=lambda: webbrowser.open("https://github.com/ArthurSilvaChaves/AssistentInPython?tab=readme-ov-file#manual-to-visual-version-of-this-app"),font=("Arial", 20))
 manual_to_user_button.pack(pady=10)
 
 convertion_tool_button = ctk.CTkButton(functions,text="Value conversion tool", command=convertion_tool,font=("Arial", 20))

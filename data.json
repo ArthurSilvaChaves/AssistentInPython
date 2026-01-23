@@ -181,12 +181,14 @@
     },
     "locais":[
         {
-            "nome":"São Paulo",
+            "nome":"São Paulo - SP",
             "latitude":-23.55171346948065,
             "longitude":-46.63490295410156
         },
         {
-
+            "nome":"Rio de Janeiro - RJ",
+            "latitude":-22.9131795215742,
+            "longitude":-43.21008682250977
         }
     ]
 }
