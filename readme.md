@@ -1,7 +1,7 @@
 # Assistent in Python 💻
 
 ## Description 📰
-assistent in python, simple in the terminal, and two languages
+assistent in python, simple in the terminal, two languages(English and Portuguese) and a visual version(GUI)
 
 ## Features ⚙
 ### Automation for open navegator 
@@ -33,6 +33,13 @@ assistent in python, simple in the terminal, and two languages
 1. clone the repository
 2. execute the archive "python main.py"
 
-## Future features 📲
-### Graphic interface
-- will be made with customtkinter
+## Manual to Visual Version of this app📺
+### To use conversion tools (currenry and other values like temperature, distance and weight)
+- in the first input, enter the __value__ that you want to convert
+- in the the second input, enter the __measure or currency__ that you want to convert
+- finally, in the third input, enter the __measure or currency__ you want to convert to
+
+### To use "🎙️"(microphone feature)
+- for while this feature is not operative, but soon will 
+- press the button and say something
+- *do not wait*, otherwise the recognition period will pass

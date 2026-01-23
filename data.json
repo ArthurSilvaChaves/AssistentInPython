@@ -174,7 +174,19 @@
             "Dollars",
             "Euros",
             "Japonese Yen",
-            "Bitcoin"
+            "Bitcoin",
+            "BRL",
+            "Brazilian Real"
         ]
-    }
+    },
+    "locais":[
+        {
+            "nome":"São Paulo",
+            "latitude":-23.55171346948065,
+            "longitude":-46.63490295410156
+        },
+        {
+
+        }
+    ]
 }
