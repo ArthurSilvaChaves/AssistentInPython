@@ -24,6 +24,7 @@ def load_data():
     global youtube_channels
     global urls
     global coins
+    global cities
     
     with open("data.json", "r") as f:
         data = json.load(f)
@@ -43,6 +44,7 @@ def load_data():
     youtube_channels = data["data"]["youtube_channels"]
     urls = data["urls"]["url"]
     coins = data["coins"]["coin"]
+    cities = data["locais"]
 
 def load_options():
     global nameuser
@@ -90,9 +92,6 @@ def get_cotation_coins():
 
     if not coin and not value_coin and not third_entry.get():
         mainlabel1.configure(text="Please enter a value and a coin.")
-        main_entry.configure(placeholder_text="value")
-        second_entry.configure(placeholder_text="coin(USD, EUR, JPY, BTC)")
-        third_entry.configure(placeholder_text="coin(USD, EUR, JPY, BTC)")
     else:
         if coin in coins:
             url_cotation = urls[0]
@@ -109,6 +108,10 @@ def get_cotation_coins():
                 data = response.json()
 
                 mainlabel1.configure(text=f"{value_coin} USD = {data['rates']['BRL']} BRL")
+
+                main_entry.delete(0,"end")
+                second_entry.delete(0,"end")
+                third_entry.delete(0,"end")
             
             #brl to dollar
             elif (coin == coins[8] and coin_to == coins[0]) or (coin == coins[8] and coin_to == coins[4]) or (coin == coins[8] and coin_to == coins[4].lower()):
@@ -121,6 +124,10 @@ def get_cotation_coins():
                 data = response.json()
 
                 mainlabel1.configure(text=f"{value_coin} BRL = {data['rates']['USD']} USD")
+
+                main_entry.delete(0,"end")
+                second_entry.delete(0,"end")
+                third_entry.delete(0,"end")
            
             #euro to brl
             elif (coin == coins[1] and coin_to == coins[8]) or (coin == coins[5] and coin_to == coins[8]) or (coin == coins[5].lower() and coin_to == coins[8]):
@@ -134,6 +141,10 @@ def get_cotation_coins():
 
                 mainlabel1.configure(text=f"{value_coin} EUR = {data['rates']['BRL']} BRL")
             
+                main_entry.delete(0,"end")
+                second_entry.delete(0,"end")
+                third_entry.delete(0,"end")
+
             #brl to euro
             elif (coin == coins[8] and coin_to == coins[1]) or (coin == coins[8] and coin_to == coins[5]) or (coin == coins[8] and coin_to == coins[5].lower()):
                 paramsreal_to_euro = {
@@ -145,6 +156,11 @@ def get_cotation_coins():
                 data = response.json()
 
                 mainlabel1.configure(text=f"{value_coin} BRL = {data['rates']['EUR']} EUR")
+
+                main_entry.delete(0,"end")
+                second_entry.delete(0,"end")
+                third_entry.delete(0,"end")
+
             #yene to brl
             elif (coin == coins[2] and coin_to == coins[8]) or (coin == coins[6] and coin_to == coins[8]) or (coin == coins[6].lower() and coin_to == coins[8]):
                 paramsyen = {
@@ -156,6 +172,11 @@ def get_cotation_coins():
                 data = response.json()
 
                 mainlabel1.configure(text=f"{value_coin} YEN = {data['rates']['BRL']} BRL")
+
+                main_entry.delete(0,"end")
+                second_entry.delete(0,"end")
+                third_entry.delete(0,"end")
+
             #brl to yene
             elif (coin == coins[8] and coin_to == coins[2]) or (coin == coins[8] and coin_to == coins[6]) or (coin == coins[8] and coin_to == coins[6].lower()):
                 paramsreal_to_yen = {
@@ -167,6 +188,11 @@ def get_cotation_coins():
                 data = response.json()
 
                 mainlabel1.configure(text=f"{value_coin} BRL = {data['rates']['JPY']} YEN")
+
+                main_entry.delete(0,"end")
+                second_entry.delete(0,"end")
+                third_entry.delete(0,"end")
+
             #btc to brl
             elif coin == coins[3] or coin == coins[7] or coin == coins[7].lower():
                 paramsbitcoin = {
@@ -179,6 +205,11 @@ def get_cotation_coins():
                 btc_brl = databitcoin["bitcoin"]["brl"]
 
                 mainlabel1.configure(text=f"1 BTC = {btc_brl} BRL")
+
+                main_entry.delete(0,"end")
+                second_entry.delete(0,"end")
+                third_entry.delete(0,"end")
+
             #dollar to euro
             elif coin == coins[0].upper() and coin_to == coins[1]:
                 paramsdollar_to_euro = {
@@ -190,6 +221,11 @@ def get_cotation_coins():
                 response = requests.get(url_cotation,params=paramsdollar_to_euro)
                 data = response.json()
                 mainlabel1.configure(text=f"{value_coin} USD = {data['rates']['EUR']} EUR")
+
+                main_entry.delete(0,"end")
+                second_entry.delete(0,"end")
+                third_entry.delete(0,"end")
+
             #euro to dollar
             elif coin == coins[1].upper() and coin_to == coins[0]:
                 paramseuro_to_dollar = {
@@ -199,6 +235,13 @@ def get_cotation_coins():
                 }
                 response = requests.get(url_cotation,params=paramseuro_to_dollar)
                 data = response.json()
+
+                mainlabel1.configure(text=f"{value_coin} EUR = {data['rates']['USD']} USD")
+
+                main_entry.delete(0,"end")
+                second_entry.delete(0,"end")
+                third_entry.delete(0,"end")
+
             #dollar to yene
             elif coin == coins[0].upper() and coin_to == coins[2]:
                 paramsdollar_to_yen = {
@@ -209,6 +252,11 @@ def get_cotation_coins():
                 response = requests.get(url_cotation,params=paramsdollar_to_yen)
                 data = response.json()
                 mainlabel1.configure(text=f"{value_coin} USD = {data['rates']['JPY']} YEN")
+
+                main_entry.delete(0,"end")
+                second_entry.delete(0,"end")
+                third_entry.delete(0,"end")
+
             #yene to dollar
             elif coin == coins[2].upper() and coin_to == coins[0]:
                 paramsyen_to_dollar = {
@@ -219,6 +267,11 @@ def get_cotation_coins():
                 response = requests.get(url_cotation,params=paramsyen_to_dollar)
                 data = response.json()
                 mainlabel1.configure(text=f"{value_coin} YEN = {data['rates']['USD']} USD")
+
+                main_entry.delete(0,"end")
+                second_entry.delete(0,"end")
+                third_entry.delete(0,"end")
+
             #euro to yene
             elif coin == coins[1].upper() and coin_to == coins[2]:
                 paramseuro_to_yen = {
@@ -229,6 +282,11 @@ def get_cotation_coins():
                 response = requests.get(url_cotation,params=paramseuro_to_yen)
                 data = response.json()
                 mainlabel1.configure(text=f"{value_coin} EUR = {data['rates']['JPY']} YEN")
+
+                main_entry.delete(0,"end")
+                second_entry.delete(0,"end")
+                third_entry.delete(0,"end")
+
             #yene to euro
             elif coin == coins[2].upper() and coin_to == coins[1]:
                 paramsyen_to_euro = {
@@ -240,7 +298,11 @@ def get_cotation_coins():
                 response = requests.get(url_cotation,params=paramsyen_to_euro)
                 data = response.json()
                 mainlabel1.configure(text=f"{value_coin} YEN = {data['rates']['EUR']} EUR")
-        
+
+                main_entry.delete(0,"end")
+                second_entry.delete(0,"end")
+                third_entry.delete(0,"end")
+
             else:
                 mainlabel1.configure(text="Please enter a valid coin.")
             
@@ -253,31 +315,58 @@ def convertion_tool():
     #bagunça total (arrumar dps)|(fix this later)
     if not amount or not value1 or not value2:
         mainlabel1.configure(text=" Please enter all the necessary values.")
-        main_entry.configure(placeholder_text="value")
-        second_entry.configure(placeholder_text="from measure")
-        third_entry.configure(placeholder_text="measure")
     else:
         #temperature conversion conditions (if & else)
         if value1.lower() == "celsius" and value2.lower() == "fahrenheit":
             fahrenheit = (float(amount) * 1.8) + 32
             mainlabel1.configure(text=f"{amount} Celsius = {fahrenheit} Fahrenheit")
+            
+            main_entry.delete(0,"end")
+            second_entry.delete(0,"end")
+            third_entry.delete(0,"end")
+
         elif value1.lower() == "fahrenheit" and value2.lower() == "celsius":
             celsius = (float(amount) - 32) / 1.8
             mainlabel1.configure(text=f"{amount} Fahrenheit = {celsius:.2f} Celsius")
+            
+            main_entry.delete(0,"end")
+            second_entry.delete(0,"end")
+            third_entry.delete(0,"end")
+
         #distance conversion conditions (if & else)
         elif value1.lower() == "km" and value2.lower() == "miles":
             miles = float(amount) * 0.621371
             mainlabel1.configure(text=f"{amount} Kilometers = {miles:.2f} Miles")
+            
+            main_entry.delete(0,"end")
+            second_entry.delete(0,"end")
+            third_entry.delete(0,"end")
+
         elif value1.lower() == "miles" and value2.lower() == "km":
             kilometers = float(amount) / 0.621371
             mainlabel1.configure(text=f"{amount} Miles = {kilometers:.2f} Kilometers")
+            
+            main_entry.delete(0,"end")
+            second_entry.delete(0,"end")
+            third_entry.delete(0,"end")
+
         #weight conversion conditions (if & else)
         elif value1.lower() == "kg" and value2.lower() == "pounds":
             pounds = float(amount) * 2.20462
             mainlabel1.configure(text=f"{amount} Kilograms = {pounds:.2f} Pounds")
+            
+            main_entry.delete(0,"end")
+            second_entry.delete(0,"end")
+            third_entry.delete(0,"end")
+
         elif value1.lower() == "pounds" and value2.lower() == "kg":
             kilograms = float(amount) / 2.20462
             mainlabel1.configure(text=f"{amount} Pounds = {kilograms:.2f} Kilograms")
+            
+            main_entry.delete(0,"end")
+            second_entry.delete(0,"end")
+            third_entry.delete(0,"end")
+
         #if user no enter a valid value or measure
         else:
             mainlabel1.configure(text="Please enter valid measures.")
@@ -333,6 +422,9 @@ manual_to_user_button.pack(pady=10)
 
 convertion_tool_button = ctk.CTkButton(functions,text="Value conversion tool", command=convertion_tool,font=("Arial", 20))
 convertion_tool_button.pack(pady=10)
+
+weather_button = ctk.CTkButton(functions,text="See weather",command=lambda:print(1),font=("Arial",20))
+weather_button.pack(pady=10)
 
 microfone_button = ctk.CTkButton(functions, text="🎙️", command=microphone_function,font=("Arial", 40),width=60)
 microfone_button.pack(pady=10)
