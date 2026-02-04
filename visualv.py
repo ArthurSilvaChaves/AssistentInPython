@@ -24,7 +24,6 @@ def load_data():
     global youtube_channels
     global urls
     global coins
-    global cities
     
     with open("data.json", "r") as f:
         data = json.load(f)
@@ -44,7 +43,6 @@ def load_data():
     youtube_channels = data["data"]["youtube_channels"]
     urls = data["urls"]["url"]
     coins = data["coins"]["coin"]
-    cities = data["locais"]
 
 def load_options():
     global nameuser
@@ -128,7 +126,7 @@ def get_cotation_coins():
                 main_entry.delete(0,"end")
                 second_entry.delete(0,"end")
                 third_entry.delete(0,"end")
-           
+                
             #euro to brl
             elif (coin == coins[1] and coin_to == coins[8]) or (coin == coins[5] and coin_to == coins[8]) or (coin == coins[5].lower() and coin_to == coins[8]):
                 paramseuro = {
@@ -370,10 +368,40 @@ def convertion_tool():
         #if user no enter a valid value or measure
         else:
             mainlabel1.configure(text="Please enter valid measures.")
+
+def weathergets():
+    urlweather = urls[2]
+    urlip = urls[3]
+
+    responsegeo = requests.get(urlip)
+    datageo = responsegeo.json()
+
+    if datageo['status'] == "success":
+        lat = datageo['lat']
+        lon = datageo['lon']
+        city = datageo['city']
+        region = datageo['regionName']
+
+        paramsweather = {
+            "lat":lat,
+            "lon":lon,
+            "current_weather":"true"
+            }
+
+        response_weather = requests.get(urlweather,params=paramsweather)
+        data_weather = response_weather.json()
+
+        print(data_weather)
+
+
 def atualizar_relogio():
     now = datetime.now().strftime("%H:%M")
     relogio.configure(text=now)
     relogio.after(1000, atualizar_relogio)
+
+def game():
+    game = gameins.Game()
+    game.run()
 
 janela = ctk.CTk()
 width_janela = janela.winfo_screenwidth()
@@ -423,8 +451,11 @@ manual_to_user_button.pack(pady=10)
 convertion_tool_button = ctk.CTkButton(functions,text="Value conversion tool", command=convertion_tool,font=("Arial", 20))
 convertion_tool_button.pack(pady=10)
 
-weather_button = ctk.CTkButton(functions,text="See weather",command=lambda:print(1),font=("Arial",20))
+weather_button = ctk.CTkButton(functions,text="See weather",command=lambda: print("Weather"),font=("Arial",20))
 weather_button.pack(pady=10)
+
+game = ctk.CTkButton(functions,text="Game",command=game,font=("Arial",20))
+game.pack(pady=10)
 
 microfone_button = ctk.CTkButton(functions, text="🎙️", command=microphone_function,font=("Arial", 40),width=60)
 microfone_button.pack(pady=10)

@@ -76,12 +76,12 @@ def language_ptbr():
     global text_ptbr
 
     with open("language.json","r") as f:
-         
-         language = json.load(f)
 
-         text_ptbr = language["ptbr"]
+        language = json.load(f)
 
-         
+        text_ptbr = language["ptbr"]
+
+
     return text_ptbr
 
 language_enus()
@@ -160,10 +160,10 @@ def open_navegator():
     navegator = inquirer.select(
         message=text_language[26],
         choices = [
-             {"name":text_language[27],"value":1},
-             {"name":text_language[28],"value":2},
-             {"name":text_language[29],"value":3},
-             {"name":text_language[30],"value":4}
+            {"name":text_language[27],"value":1},
+            {"name":text_language[28],"value":2},
+            {"name":text_language[29],"value":3},
+            {"name":text_language[30],"value":4}
         ]
     ).execute()
 
@@ -456,9 +456,9 @@ def main():
 
                     match convertool:
                         case 1:
-                             temp_option = temperature_converter()
+                            temp_option = temperature_converter()
 
-                             match temp_option:
+                            match temp_option:
                                 case 1:
                                     celsius_to_fahrenheit = float(input(text_language[95]))
                                     fahrenheit = (celsius_to_fahrenheit * (9/5)) + 32
