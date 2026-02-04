@@ -43,3 +43,8 @@ assistent in python, simple in the terminal, two languages(English and Portugues
 - for while this feature is not operative, but soon will 
 - press the button and say something
 - *do not wait*, otherwise the recognition period will pass
+
+### To use the weather feature
+1. press "weather" button
+2. write temperate, wind speed or rain in the main entry
+3. there is it !
